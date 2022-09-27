@@ -44,7 +44,7 @@ interface DatasetModalProps {
 }
 
 const TableSelectorContainer = styled.div`
-  padding-bottom: 340px;
+  padding-bottom: 40px;
   width: 65%;
 `;
 

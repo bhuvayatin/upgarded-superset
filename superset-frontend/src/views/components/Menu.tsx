@@ -92,10 +92,7 @@ const StyledHeader = styled.header`
   ${({ theme }) => `
       background-color: ${theme.colors.grayscale.light5};
       margin-bottom: 2px;
-      &:nth-last-of-type(2) nav {
-        margin-bottom: 2px;
-      }
-      .caret {
+      &:nth-last-of-tconst [scroll, setScroll] = useState(false);
         display: none;
       }
       .navbar-brand {
@@ -214,6 +211,7 @@ export function Menu({
   isFrontendRoute = () => false,
 }: MenuProps) {
   const [showMenu, setMenu] = useState<MenuMode>('horizontal');
+  const [scroll, setScroll] = useState(false);
   const screens = useBreakpoint();
   const uiConfig = useUiConfig();
   const theme = useTheme();
@@ -229,6 +227,16 @@ export function Menu({
     window.addEventListener('resize', windowResize);
     return () => window.removeEventListener('resize', windowResize);
   }, []);
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      const scrollCheck = document.documentElement.scrollTop;
+      if (scrollCheck > 50) {
+        setScroll(true);
+      } else {
+        setScroll(false);
+      }
+    });
+  });
 
   const standalone = getUrlParam(URL_PARAMS.standalone);
   if (standalone || uiConfig.hideNav) return <></>;
@@ -283,7 +291,7 @@ export function Menu({
     );
   };
   return (
-    <StyledHeader className="top" id="main-menu" role="navigation">
+    <StyledHeader  className={`${scroll ? 'sticky' : null} top`} id="main-menu" role="navigation">
       <Global styles={globalStyles(theme)} />
       <Row>
         <Col md={16} xs={24}>

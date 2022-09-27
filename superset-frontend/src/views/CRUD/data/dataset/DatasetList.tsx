@@ -355,7 +355,7 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
         size: 'lg',
       },
       {
-        Header: t('Schema'),
+        Header: t('Project'),
         accessor: 'schema',
         size: 'lg',
       },
@@ -535,7 +535,7 @@ const DatasetList: FunctionComponent<DatasetListProps> = ({
         paginate: true,
       },
       {
-        Header: t('Schema'),
+        Header: t('Project'),
         id: 'schema',
         input: 'select',
         operator: FilterOperator.equals,

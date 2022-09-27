@@ -37,6 +37,7 @@ import { Logger } from 'src/logger/LogUtils';
 import { RootContextProviders } from './RootContextProviders';
 import { ScrollToTop } from './ScrollToTop';
 import QueryProvider from './QueryProvider';
+import '../assets/stylesheets/style.css';
 
 setupApp();
 setupPlugins();

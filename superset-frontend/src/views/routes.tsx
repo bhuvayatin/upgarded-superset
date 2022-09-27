@@ -110,6 +110,18 @@ const SavedQueryList = lazy(
       /* webpackChunkName: "SavedQueryList" */ 'src/views/CRUD/data/savedquery/SavedQueryList'
     ),
 );
+const Datasource = lazy(
+  ()=>
+    import(
+      /* webpackChunkName: "Datasource" */ 'src/views/CRUD/Project/Datasource'
+    ),
+);
+const Project = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "SavedQueryList" */ 'src/views/CRUD/Project/Project'
+    ),
+);
 
 type Routes = {
   path: string;
@@ -119,6 +131,14 @@ type Routes = {
 }[];
 
 export const routes: Routes = [
+  {
+    path: '/superset/datasource/',
+    Component: Datasource,
+  },
+  {
+    path: '/projectmodelview/list/',
+    Component: Project,
+  },
   {
     path: '/superset/welcome/',
     Component: Welcome,

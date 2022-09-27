@@ -100,6 +100,7 @@ const PropertiesModal = ({
   const [owners, setOwners] = useState<Owners>([]);
   const [roles, setRoles] = useState<Roles>([]);
   const saveLabel = onlyApply ? t('Apply') : t('Save');
+  const [customcolorScheme, setCustomcolrScheme] = useState<any>([]);
   const categoricalSchemeRegistry = getCategoricalSchemeRegistry();
 
   const handleErrorResponse = async (response: Response) => {
@@ -389,6 +390,11 @@ const PropertiesModal = ({
     }
   };
 
+  const onchangecolor = (e: any) => {
+    setCustomcolrScheme(e.target.value.split(','));
+    console.log(e.target.value.split(','));
+  };
+
   const getRowsWithoutRoles = () => {
     const jsonMetadataObj = getJsonMetadata();
     const hasCustomLabelColors = !!Object.keys(
@@ -415,6 +421,21 @@ const PropertiesModal = ({
           <p className="help-block">
             {t(
               'Owners is a list of users who can alter the dashboard. Searchable by name or username.',
+            )}
+          </p>
+        </Col>
+        <Col xs={24} md={12}>
+          <h3 style={{ marginTop: '1em' }}>{t('Add Custom Colors')}</h3>
+          <StyledFormItem label={t('Color')}>
+            <Input
+              type="text"
+              placeholder="#ffffff,#000000"
+              onChange={onchangecolor}
+            />
+          </StyledFormItem>
+          <p className="help-block">
+            {t(
+              'Please enter color code with comma(,) separated value like #ffffff, #000000',
             )}
           </p>
         </Col>
@@ -487,6 +508,21 @@ const PropertiesModal = ({
           </Col>
         </Row>
         <Row>
+        <Col xs={24} md={12}>
+            <h3 style={{ marginTop: '0px' }}>{t('Add Custom Colors')}</h3>
+            <StyledFormItem label={t('Color')}>
+              <Input
+                type="text"
+                placeholder="#ffffff,#000000"
+                onChange={onchangecolor}
+              />
+            </StyledFormItem>
+            <p className="help-block">
+              {t(
+                'Please enter color code with comma(,) separated value like #ffffff, #000000',
+              )}
+            </p>
+          </Col>
           <Col xs={24} md={12}>
             <ColorSchemeControlWrapper
               hasCustomLabelColors={hasCustomLabelColors}
